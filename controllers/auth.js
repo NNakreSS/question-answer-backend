@@ -17,4 +17,11 @@ const register = asyncErrorWrapper(async (req, res, next) => {
   sendJwtToClient(newUser, res);
 });
 
-export { register };
+const tokentest = (req, res, next) => {
+  res.json({
+    success: true,
+    message: "welcomme",
+  });
+};
+
+export { register, tokentest };
