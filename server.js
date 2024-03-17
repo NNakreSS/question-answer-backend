@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import dotenv from "dotenv";
 //? routers
 import routers from "./routers/index.js";
@@ -33,6 +34,9 @@ app.use("/api", routers);
 
 //? Error handler
 app.use(customErrorHandler);
+
+//? static files
+app.use(express.static(path.join(process.cwd(), "public")));
 
 app.listen(PORT, () =>
   console.log(`app startet on ${PORT} : ${process.env.NODE_ENV}`)
