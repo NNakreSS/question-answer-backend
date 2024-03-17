@@ -12,6 +12,9 @@ const register = asyncErrorWrapper(async (req, res, next) => {
     role,
   });
 
+  const token = newUser.generateJwtFromUser();
+  console.log(token);
+
   res.status(200).json({
     success: true,
     data: newUser,
