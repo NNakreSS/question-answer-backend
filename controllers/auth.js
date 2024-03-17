@@ -17,10 +17,4 @@ const register = asyncErrorWrapper(async (req, res, next) => {
   sendJwtToClient(newUser, res);
 });
 
-const errorTest = (req, res, next) => {
-  // Some codes
-  return next(new TypeError());
-  // Some codes
-};
-
-export { register, errorTest };
+export { register };
