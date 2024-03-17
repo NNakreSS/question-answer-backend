@@ -14,6 +14,14 @@ const customErrorHandler = (err, req, res, next) => {
       break;
   }
 
+  if (err.code == 11000) {
+    // dublicated key
+    customError = new CustomError(
+      "Dublicate key Found : Check your input",
+      400
+    );
+  }
+
   res.status(customError.status || 500).json({
     success: false,
     message: customError.message || "Internal Server Error",
