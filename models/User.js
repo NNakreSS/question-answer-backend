@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
 
 const Schema = mongoose.Schema;
 
@@ -61,6 +62,18 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+});
+
+UserSchema.pre("save", function (next) {
+  //? password hash
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) next(err);
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      if (err) next(err);
+      this.password = hash;
+      next();
+    });
+  });
 });
 
 export default mongoose.model("User", UserSchema);
