@@ -65,6 +65,9 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre("save", function (next) {
+  // password is not changed
+  if (!this.isModified("password")) next();
+
   //? password hash
   bcrypt.genSalt(10, (err, salt) => {
     if (err) next(err);
