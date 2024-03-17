@@ -24,4 +24,11 @@ const tokentest = (req, res, next) => {
   });
 };
 
-export { register, tokentest };
+const getUser = (req, res, next) => {
+  res.json({
+    success: true,
+    data: req.user,
+  });
+};
+
+export { register, tokentest, getUser };
