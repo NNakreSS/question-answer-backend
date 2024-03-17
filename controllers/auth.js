@@ -2,7 +2,7 @@ import User from "../models/User.js";
 // async error wrapper
 import asyncErrorWrapper from "express-async-handler";
 // helpoers authorization
-import sendJwtToClient from "../helpers/authorization/sendJwtToClient.js";
+import sendJwtToClient from "../helpers/authorization/tokenHelpers.js";
 
 const register = asyncErrorWrapper(async (req, res, next) => {
   const { name, email, password, role } = req.body;
