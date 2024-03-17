@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 // async error wrapper
 import asyncErrorWrapper from "express-async-handler";
+// helpoers authorization
+import sendJwtToClient from "../helpers/authorization/sendJwtToClient.js";
 
 const register = asyncErrorWrapper(async (req, res, next) => {
   const { name, email, password, role } = req.body;
@@ -12,13 +14,7 @@ const register = asyncErrorWrapper(async (req, res, next) => {
     role,
   });
 
-  const token = newUser.generateJwtFromUser();
-  console.log(token);
-
-  res.status(200).json({
-    success: true,
-    data: newUser,
-  });
+  sendJwtToClient(newUser, res);
 });
 
 const errorTest = (req, res, next) => {
