@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const Schema = mongoose.Schema;
 
@@ -64,6 +65,19 @@ const UserSchema = new Schema({
   },
 });
 
+//? User Schema Methods
+// create jwt token
+UserSchema.methods.generateJwtFromUser = function () {
+  const { JWT_SECRET_KEY, JWT_EXPIRE } = process.env;
+  const payload = {
+    id: this._id,
+    name: this.name,
+  };
+  const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: JWT_EXPIRE });
+  return token;
+};
+
+//? pre hooks
 UserSchema.pre("save", function (next) {
   // password is not changed
   if (!this.isModified("password")) next();
