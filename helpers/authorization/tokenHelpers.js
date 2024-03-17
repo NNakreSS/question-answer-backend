@@ -20,4 +20,4 @@ const sendJwtToClient = (user, res) => {
     });
 };
 
-export default sendJwtToClient;
+export { sendJwtToClient };
