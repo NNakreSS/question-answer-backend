@@ -18,6 +18,9 @@ connectDatabase();
 //? create app
 const app = express();
 
+//? json middleware
+app.use(express.json());
+
 const PORT = process.env.PORT || 5000;
 
 //? default url get

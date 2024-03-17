@@ -3,15 +3,13 @@ import User from "../models/User.js";
 import asyncErrorWrapper from "express-async-handler";
 
 const register = asyncErrorWrapper(async (req, res, next) => {
-  // fake post data
-  const name = "NAKRES bool";
-  const email = "naakress@gmail.com";
-  const password = "456";
+  const { name, email, password, role } = req.body;
 
   const newUser = await User.create({
     name,
     email,
     password,
+    role,
   });
 
   res.status(200).json({
