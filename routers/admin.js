@@ -3,7 +3,7 @@ import {
   getAccessToRoute,
   getAdminAccess,
 } from "../middlewares/authorization/auth.js";
-import { blockUser } from "../controllers/admin.js";
+import { blockUser  , deleteUser} from "../controllers/admin.js";
 import { checkUserExist } from "../middlewares/database/dbErrorHelpers.js";
 
 const router = Router();
@@ -19,5 +19,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/block/:id", checkUserExist, blockUser);
+
+// delete methods
+router.delete("/delete/:id", checkUserExist, deleteUser);
 
 export default router;
