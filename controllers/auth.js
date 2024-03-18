@@ -50,7 +50,7 @@ const logout = asyncErrorWrapper(async (req, res, next) => {
     .cookie({
       httpOnly: true,
       expires: new Date(Date.now()),
-      secure: NODE_ENV === "production",  
+      secure: NODE_ENV === "production",
     })
     .json({
       success: true,
@@ -65,4 +65,20 @@ const getUser = (req, res, next) => {
   });
 };
 
-export { register, tokentest, getUser, login, logout };
+const imageUpload = asyncErrorWrapper(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      profile_image: req.savedProfileImage,
+    },
+    { new: true, runValidators: true }
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "image upload success",
+    data: user,
+  });
+});
+
+export { register, tokentest, getUser, login, logout, imageUpload };
