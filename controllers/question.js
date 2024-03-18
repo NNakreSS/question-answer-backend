@@ -48,4 +48,21 @@ const editQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { getAllQuestions, askNewQuestion, getQuestionById, editQuestion };
+const deleteQuestion = asyncErrorWrapper(async (req, res, next) => {
+  const question = req.data;
+
+  await question.deleteOne();
+
+  return res.status(200).json({
+    success: true,
+    data: "Deleted question",
+  });
+});
+
+export {
+  getAllQuestions,
+  askNewQuestion,
+  getQuestionById,
+  editQuestion,
+  deleteQuestion,
+};

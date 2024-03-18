@@ -10,6 +10,7 @@ import {
   askNewQuestion,
   getQuestionById,
   editQuestion,
+  deleteQuestion
 } from "../controllers/question.js";
 
 const router = express.Router();
@@ -26,6 +27,13 @@ router.put(
   "/:id/edit",
   [getAccessToRoute, checkQuestionExist, getQuestionOwnerAccess],
   editQuestion
+);
+
+//? delete methods
+router.delete(
+  "/:id/delete",
+  [getAccessToRoute, checkQuestionExist, getQuestionOwnerAccess],
+  deleteQuestion
 );
 
 export default router;
