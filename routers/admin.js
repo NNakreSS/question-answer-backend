@@ -3,17 +3,21 @@ import {
   getAccessToRoute,
   getAdminAccess,
 } from "../middlewares/authorization/auth.js";
-
-//? get methods
+import { blockUser } from "../controllers/admin.js";
+import { checkUserExist } from "../middlewares/database/dbErrorHelpers.js";
 
 const router = Router();
 
 router.use([getAccessToRoute, getAdminAccess]);
+
+//? get methods
 router.get("/", (req, res, next) => {
   res.status(200).json({
     success: true,
-    message: "admin page",
+    message: "Admin Page",
   });
 });
+
+router.get("/block/:id", checkUserExist, blockUser);
 
 export default router;
