@@ -2,12 +2,13 @@ import CustomError from "../helpers/errors/CustomError.js";
 import Question from "../models/Question.js";
 import asyncErrorWrapper from "express-async-handler";
 
-const getAllQuestions = (req, res, next) => {
+const getAllQuestions = asyncErrorWrapper(async (req, res, next) => {
+  const questions = await Question.find();
   res.status(200).json({
     success: true,
-    message: "Question",
+    data: questions,
   });
-};
+});
 
 const askNewQuestion = asyncErrorWrapper(async (req, res, next) => {
   const information = req.body;
