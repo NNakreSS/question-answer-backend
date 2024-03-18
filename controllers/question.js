@@ -24,4 +24,13 @@ const askNewQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { getAllQuestions, askNewQuestion };
+const getQuestionById = asyncErrorWrapper(async (req, res, next) => {
+  const question = req.data;
+
+  return res.status(200).json({
+    success: true,
+    data: question,
+  });
+});
+
+export { getAllQuestions, askNewQuestion, getQuestionById };

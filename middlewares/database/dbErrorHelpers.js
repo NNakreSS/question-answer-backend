@@ -1,6 +1,7 @@
 import asyncErrorWrapper from "express-async-handler";
 import CustomError from "../../helpers/errors/CustomError.js";
 import User from "../../models/User.js";
+import Question from "../../models/Question.js";
 
 const checkUserExist = asyncErrorWrapper(async (req, res, next) => {
   const { id } = req.params;
@@ -13,4 +14,15 @@ const checkUserExist = asyncErrorWrapper(async (req, res, next) => {
   return next();
 });
 
-export { checkUserExist };
+const checkQuestionExist = asyncErrorWrapper(async (req, res, next) => {
+  const { id } = req.params;
+
+  const question = await Question.findById(id);
+
+  if (!question) return next(new CustomError("Question not found", 404));
+
+  req.data = question;
+  return next();
+});
+
+export { checkUserExist, checkQuestionExist };
