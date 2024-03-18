@@ -10,6 +10,9 @@ const customErrorHandler = (err, req, res, next) => {
     case "ValidationError":
       customError = new CustomError(err.message, 400);
       break;
+    case "CastError":
+      customError = new CustomError("Please provide a valid id", 400);
+      break;
     default:
       break;
   }
