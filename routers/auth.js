@@ -9,6 +9,7 @@ import {
   imageUpload,
   forgotpassword,
   resetPassword,
+  editDetails
 } from "../controllers/auth.js";
 //? middlewares
 import { getAccessToRoute } from "../middlewares/authorization/auth.js";
@@ -28,6 +29,7 @@ router.post("/forgotpassword", forgotpassword); // forgot password
 
 //? put methods
 router.put("/resetpassword", resetPassword); // reset password
+router.put("/edit", getAccessToRoute, editDetails); // reset password
 
 //? get methods
 router.get("/profile", getAccessToRoute, getUser);

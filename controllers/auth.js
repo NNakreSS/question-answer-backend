@@ -147,6 +147,20 @@ const resetPassword = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
+const editDetails = asyncErrorWrapper(async (req, res, next) => {
+  const editInformation = req.body;
+  const id = req.user.id;
+  const user = await User.findByIdAndUpdate(id, editInformation, {
+    new: true,
+    runValidators: true,
+  });
+
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
+
 export {
   register,
   tokentest,
@@ -156,4 +170,5 @@ export {
   imageUpload,
   forgotpassword,
   resetPassword,
+  editDetails,
 };
