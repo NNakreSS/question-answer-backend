@@ -36,6 +36,8 @@ const login = asyncErrorWrapper(async (req, res, next) => {
   //? get user
   const user = await User.findOne({ email: email }).select("+password");
 
+  if (!user) return next(new CustomError("User not found"), 400);
+
   //? check password
   if (!comparePassword(password, user.password))
     return next(new CustomError("Please check your credentials"), 400);
