@@ -8,6 +8,7 @@ import {
   logout,
   imageUpload,
   forgotpassword,
+  resetPassword,
 } from "../controllers/auth.js";
 //? middlewares
 import { getAccessToRoute } from "../middlewares/authorization/auth.js";
@@ -23,7 +24,10 @@ router.post(
   [getAccessToRoute, profileImageUpload.single("profile_image")],
   imageUpload
 ); // user profile image upload
-router.post("/forgotpassword", forgotpassword); // forgot password reset
+router.post("/forgotpassword", forgotpassword); // forgot password
+
+//? put methods
+router.put("/resetpassword", resetPassword); // reset password
 
 //? get methods
 router.get("/profile", getAccessToRoute, getUser);
