@@ -9,9 +9,6 @@ import { getAllQuestions } from "../controllers/question.js";
 
 //? get methods
 router.get("/", getAllQuestions);
-router.get("/delete", (req, res) => {
-  res.send("<h1>Questions Delete Page</h1>");
-});
 
 //? post methods
 router.post("/ask", getAccessToRoute, askNewQuestion);
