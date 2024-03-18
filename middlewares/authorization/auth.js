@@ -1,10 +1,12 @@
-import CustomError from "../../helpers/errors/CustomError.js";
 import jwt from "jsonwebtoken";
+import CustomError from "../../helpers/errors/CustomError.js";
+import User from "../../models/User.js";
 // helpers
 import {
   getAccessTokenFromHeader,
   isTokenIncluded,
 } from "../../helpers/authorization/tokenHelpers.js";
+import asyncErrorWrapper from "express-async-handler";
 
 const getAccessToRoute = (req, res, next) => {
   // Token
@@ -31,7 +33,18 @@ const getAccessToRoute = (req, res, next) => {
 
     next();
   });
-  // CustomError
 };
 
-export { getAccessToRoute };
+const getAdminAccess = asyncErrorWrapper(async (req, res, next) => {
+  const { id } = req.user;
+  const user = await User.findById(id);
+
+  if (user.role !== "admin")
+    return next(
+      new CustomError("Youre not authorized to access this route", 403)
+    );
+
+  return next();
+});
+
+export { getAccessToRoute, getAdminAccess };
