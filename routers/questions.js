@@ -10,7 +10,7 @@ import {
   askNewQuestion,
   getQuestionById,
   editQuestion,
-  deleteQuestion
+  deleteQuestion,
 } from "../controllers/question.js";
 
 const router = express.Router();
