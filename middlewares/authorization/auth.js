@@ -50,10 +50,12 @@ const getAdminAccess = asyncErrorWrapper(async (req, res, next) => {
 
 const getQuestionOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
   const { id } = req.user;
-  const questionId = req.params.id;
-  const question = await Question.findById(questionId);
+  const question = req.data;
 
-  if (question.author !== id)
+  console.log("User id : ", id);
+  console.log("questionId owner id : ", question.author);
+
+  if (question.author != id)
     return next(new CustomError("Only owner can handle this opretaion", 403));
 
   return next();

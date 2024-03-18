@@ -33,4 +33,19 @@ const getQuestionById = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { getAllQuestions, askNewQuestion, getQuestionById };
+const editQuestion = asyncErrorWrapper(async (req, res, next) => {
+  let question = req.data;
+  const { title, content } = req.body;
+
+  question.title = title;
+  question.content = content;
+
+  question = await question.save();
+
+  return res.status(200).json({
+    success: true,
+    data: question,
+  });
+});
+
+export { getAllQuestions, askNewQuestion, getQuestionById, editQuestion };
