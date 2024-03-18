@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { getSingleUser } from "../controllers/user.js";
+import { getUserById } from "../controllers/user.js";
+// middlewares
+import { checkUserExist } from "../middlewares/database/dbErrorHelpers.js";
 
 const router = Router();
 
 //? get methods
-router.get("/:id", getSingleUser);
+router.get("/:id", checkUserExist, getUserById);
 
 export default router;
