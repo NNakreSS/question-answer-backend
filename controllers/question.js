@@ -59,10 +59,45 @@ const deleteQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
+const likeQuestion = asyncErrorWrapper(async (req, res, next) => {
+  const question = req.data;
+
+  if (question.likes.includes(req.user.id))
+    return next(new CustomError("Question already liked"), 400);
+
+  question.likes.push(req.user.id);
+  await question.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Liked question",
+    data: question,
+  });
+});
+
+const unLikeQuestion = asyncErrorWrapper(async (req, res, next) => {
+  const question = req.data;
+
+  if (!question.likes.includes(req.user.id))
+    return next(new CustomError("Question already not liked"), 400);
+
+  const index = question.likes.indexOf(req.user.id);
+  question.likes.splice(index, 1);
+  await question.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Unliked question",
+    data: question,
+  });
+});
+
 export {
   getAllQuestions,
   askNewQuestion,
   getQuestionById,
   editQuestion,
   deleteQuestion,
+  likeQuestion,
+  unLikeQuestion,
 };

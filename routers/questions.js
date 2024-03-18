@@ -11,6 +11,8 @@ import {
   getQuestionById,
   editQuestion,
   deleteQuestion,
+  likeQuestion,
+  unLikeQuestion
 } from "../controllers/question.js";
 
 const router = express.Router();
@@ -18,6 +20,8 @@ const router = express.Router();
 //? get methods
 router.get("/", getAllQuestions);
 router.get("/:id", checkQuestionExist, getQuestionById);
+router.get("/:id/like", [getAccessToRoute, checkQuestionExist], likeQuestion);
+router.get("/:id/unlike", [getAccessToRoute, checkQuestionExist], unLikeQuestion);
 
 //? post methods
 router.post("/ask", getAccessToRoute, askNewQuestion);
