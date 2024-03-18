@@ -1,4 +1,3 @@
-import User from "../models/User.js";
 import asyncErrorWrapper from "express-async-handler";
 
 const getUserById = asyncErrorWrapper(async (req, res, next) => {
