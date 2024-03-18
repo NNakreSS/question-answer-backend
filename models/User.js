@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 
 const Schema = mongoose.Schema;
 
@@ -63,6 +64,14 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+
+  resetPasswordToken: {
+    type: String,
+  },
+
+  resetPasswordExpire: {
+    type: Date,
+  },
 });
 
 //? User Schema Methods
@@ -75,6 +84,20 @@ UserSchema.methods.generateJwtFromUser = function () {
   };
   const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: JWT_EXPIRE });
   return token;
+};
+
+UserSchema.methods.getResetPasswordTokenFromUser = function () {
+  const { RESET_PASSWORD_EXPIRE } = process.env;
+  const randomHexString = crypto.randomBytes(16).toString("hex");
+  const resetPasswordToken = crypto
+    .createHash("SHA256")
+    .update(randomHexString)
+    .digest("hex");
+
+  this.resetPasswordToken = resetPasswordToken;
+  this.resetPasswordExpire = Date.now() + parseInt(RESET_PASSWORD_EXPIRE);
+
+  return resetPasswordToken;
 };
 
 //? pre hooks

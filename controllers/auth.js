@@ -81,4 +81,28 @@ const imageUpload = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { register, tokentest, getUser, login, logout, imageUpload };
+const forgotpassword = asyncErrorWrapper(async (req, res, next) => {
+  const { email: resetEmail } = req.body;
+  const user = await User.findOne({ email: resetEmail });
+  if (!user)
+    return next(new CustomError("There is no user with that email", 400));
+
+  const resetPassWordToken = user.getResetPasswordTokenFromUser();
+
+  await user.save();
+
+  res.json({
+    success: true,
+    message: "Password reset link sent to your email",
+  });
+});
+
+export {
+  register,
+  tokentest,
+  getUser,
+  login,
+  logout,
+  imageUpload,
+  forgotpassword,
+};
