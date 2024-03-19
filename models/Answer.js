@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Question from "./Question.js";
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +11,7 @@ const AnswerSchema = new Schema({
   },
 
   createdAt: {
-    typeof: Date,
+    type: Date,
     default: Date.now,
   },
 
@@ -32,6 +33,22 @@ const AnswerSchema = new Schema({
     required: true,
     ref: "Question",
   },
+});
+
+//? pre hooks
+AnswerSchema.pre("save", async function (next) {
+  if (!this.isModified("author")) return next();
+
+  try {
+    const question = await Question.findById(this.question);
+    console.log(this.question);
+    question.answers.push(this._id);
+    console.log(this.question);
+    await question.save();
+    next();
+  } catch (error) {
+    return next(error);
+  }
 });
 
 export default mongoose.model("Answer", AnswerSchema);
