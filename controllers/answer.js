@@ -73,10 +73,43 @@ const deleteAnswer = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
+const likeAnswer = asyncErrorWrapper(async (req, res, next) => {
+  const answer = req.data;
+  if (answer.likes.includes(req.user.id))
+    return next(new CustomError("Answer already liked"), 400);
+
+  answer.likes.push(req.user.id);
+  await answer.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Liked answer",
+    data: answer,
+  });
+});
+
+const unLikeAnswer = asyncErrorWrapper(async (req, res, next) => {
+  const answer = req.data;
+  if (!answer.likes.includes(req.user.id))
+    return next(new CustomError("answer already not liked"), 400);
+
+  const index = answer.likes.indexOf(req.user.id);
+  answer.likes.splice(index, 1);
+  await answer.save();
+
+  return res.status(200).json({
+    success: true,
+    message: "Unliked answer",
+    data: answer,
+  });
+});
+
 export {
   addNewAnswerToQuestion,
   getAllAnswersByQuestion,
   getAnswerById,
   editAnswer,
   deleteAnswer,
+  likeAnswer,
+  unLikeAnswer,
 };

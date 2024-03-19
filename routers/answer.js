@@ -13,7 +13,9 @@ import {
   editAnswer,
   getAllAnswersByQuestion,
   getAnswerById,
-  deleteAnswer
+  deleteAnswer,
+  likeAnswer,
+  unLikeAnswer
 } from "../controllers/answer.js";
 
 const router = Router({ mergeParams: true });
@@ -21,6 +23,16 @@ const router = Router({ mergeParams: true });
 //? get methods
 router.get("/", getAllAnswersByQuestion);
 router.get("/:answer_id", checkAnswerExist, getAnswerById);
+router.get(
+  "/:answer_id/like",
+  [checkAnswerExist, getAccessToRoute],
+  likeAnswer
+);
+router.get(
+  "/:answer_id/unlike",
+  [checkAnswerExist, getAccessToRoute],
+  unLikeAnswer
+);
 
 //? post methods
 router.post("/", getAccessToRoute, addNewAnswerToQuestion);
