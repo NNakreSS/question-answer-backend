@@ -65,7 +65,7 @@ const getAnswerOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
   const { id } = req.user;
   const answer = req.data;
 
-  if (answer.author != id)
+  if (answer.author._id != id)
     return next(new CustomError("Only owner can handle this opretaion", 403));
 
   return next();

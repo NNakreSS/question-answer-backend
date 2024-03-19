@@ -10,6 +10,7 @@ import { checkAnswerExist } from "../middlewares/database/dbErrorHelpers.js";
 //? controllers
 import {
   addNewAnswerToQuestion,
+  editAnswer,
   getAllAnswersByQuestion,
   getAnswerById,
 } from "../controllers/answer.js";

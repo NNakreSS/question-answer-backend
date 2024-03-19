@@ -40,4 +40,23 @@ const getAnswerById = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { addNewAnswerToQuestion, getAllAnswersByQuestion, getAnswerById };
+const editAnswer = asyncErrorWrapper(async (req, res, next) => {
+  let answer = req.data;
+  const { content } = req.body;
+
+  answer.content = content;
+
+  answer = await answer.save();
+
+  return res.status(200).json({
+    success: true,
+    data: answer,
+  });
+});
+
+export {
+  addNewAnswerToQuestion,
+  getAllAnswersByQuestion,
+  getAnswerById,
+  editAnswer,
+};
