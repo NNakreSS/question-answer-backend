@@ -32,4 +32,12 @@ const getAllAnswersByQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { addNewAnswerToQuestion, getAllAnswersByQuestion };
+const getAnswerById = asyncErrorWrapper(async (req, res, next) => {
+  const answer = req.data;
+  return res.status(200).json({
+    success: true,
+    data: answer,
+  });
+});
+
+export { addNewAnswerToQuestion, getAllAnswersByQuestion, getAnswerById };
