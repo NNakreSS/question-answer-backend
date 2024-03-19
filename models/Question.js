@@ -36,6 +36,13 @@ const QuestionSchema = new Schema({
       ref: "User",
     },
   ],
+
+  answers: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "Answer",
+    },
+  ],
 });
 
 //? Question Schema methods
