@@ -10,7 +10,7 @@ const getAllQuestions = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-const askNewQuestion = asyncErrorWrapper(async (req, res, next) => {
+const addNewQuestion = asyncErrorWrapper(async (req, res, next) => {
   const information = req.body;
 
   const question = await Question.create({
@@ -94,7 +94,7 @@ const unLikeQuestion = asyncErrorWrapper(async (req, res, next) => {
 
 export {
   getAllQuestions,
-  askNewQuestion,
+  addNewQuestion,
   getQuestionById,
   editQuestion,
   deleteQuestion,

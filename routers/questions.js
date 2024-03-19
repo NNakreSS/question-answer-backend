@@ -10,7 +10,7 @@ import { checkQuestionExist } from "../middlewares/database/dbErrorHelpers.js";
 //? controllers
 import {
   getAllQuestions,
-  askNewQuestion,
+  addNewQuestion,
   getQuestionById,
   editQuestion,
   deleteQuestion,
@@ -34,7 +34,7 @@ router.get(
 );
 
 //? post methods
-router.post("/ask", getAccessToRoute, askNewQuestion);
+router.post("/add", getAccessToRoute, addNewQuestion);
 
 //? put methods
 router.put(
