@@ -64,6 +64,7 @@ const deleteAnswer = asyncErrorWrapper(async (req, res, next) => {
   await answer.deleteOne();
 
   question.answers.splice(answer_index, 1);
+  question.answerCount = question.answers.length;
 
   await question.save();
 

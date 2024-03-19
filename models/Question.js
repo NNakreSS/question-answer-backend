@@ -30,12 +30,22 @@ const QuestionSchema = new Schema({
     ref: "User",
   },
 
+  likeCount: {
+    type: Number,
+    default: 0,
+  },
+
   likes: [
     {
       type: mongoose.Schema.ObjectId,
       ref: "User",
     },
   ],
+
+  answerCount: {
+    type: Number,
+    default: 0,
+  },
 
   answers: [
     {
