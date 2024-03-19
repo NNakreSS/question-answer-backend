@@ -20,11 +20,23 @@ import {
 
 //? answer router
 import answer from "./answer.js";
+import Question from "../models/Question.js";
+import questionQueryMiddleware from "../middlewares/query/question.js";
 
 const router = express.Router();
 
 //? get methods
-router.get("/", getAllQuestions);
+router.get(
+  "/",
+  questionQueryMiddleware(Question, {
+    population: {
+      path: "author",
+      select: "name profile_image",
+    },
+  }),
+  getAllQuestions
+);
+
 router.get("/:id", checkQuestionExist, getQuestionById);
 router.get("/:id/like", [getAccessToRoute, checkQuestionExist], likeQuestion);
 router.get(
