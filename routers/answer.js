@@ -1,7 +1,10 @@
 import { Router } from "express";
 
 //? middlewares
-import { getAccessToRoute } from "../middlewares/authorization/auth.js";
+import {
+  getAccessToRoute,
+  getAnswerOwnerAccess,
+} from "../middlewares/authorization/auth.js";
 import { checkAnswerExist } from "../middlewares/database/dbErrorHelpers.js";
 
 //? controllers
@@ -19,5 +22,12 @@ router.get("/:answer_id", checkAnswerExist, getAnswerById);
 
 //? post methods
 router.post("/", getAccessToRoute, addNewAnswerToQuestion);
+
+//? put methods
+router.put(
+  "/:answer_id/edit",
+  [checkAnswerExist, getAccessToRoute, getAnswerOwnerAccess],
+  editAnswer
+);
 
 export default router;
