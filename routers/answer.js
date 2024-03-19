@@ -1,17 +1,18 @@
 import { Router } from "express";
+
+//? middlewares
 import { getAccessToRoute } from "../middlewares/authorization/auth.js";
-import { addNewAnswerToQuestion } from "../controllers/answer.js";
+
+//? controllers
+import {
+  addNewAnswerToQuestion,
+  getAllAnswersByQuestion,
+} from "../controllers/answer.js";
 
 const router = Router({ mergeParams: true });
 
 //? get methods
-router.get("/", function (req, res, next) {
-  res.status(200).json({
-    success: true,
-    message: "Answers",
-    data: req.data.answers,
-  });
-});
+router.get("/", getAllAnswersByQuestion);
 
 //? post methods
 router.post("/", getAccessToRoute, addNewAnswerToQuestion);

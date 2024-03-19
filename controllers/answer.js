@@ -20,4 +20,16 @@ const addNewAnswerToQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-export { addNewAnswerToQuestion };
+const getAllAnswersByQuestion = asyncErrorWrapper(async (req, res, next) => {
+  const question_id = req.params.id;
+  const question = await Question.findById(question_id).populate("answers");
+  const asnwers = question.answers;
+
+  res.status(200).json({
+    success: true,
+    count: asnwers.length,
+    data: asnwers,
+  });
+});
+
+export { addNewAnswerToQuestion, getAllAnswersByQuestion };
