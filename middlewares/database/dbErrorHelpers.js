@@ -18,7 +18,7 @@ const checkUserExist = asyncErrorWrapper(async (req, res, next) => {
 const checkQuestionExist = asyncErrorWrapper(async (req, res, next) => {
   const { id } = req.params;
 
-  const question = await Question.findById(id);
+  const question = await Question.findById(id).populate("answers");
 
   if (!question) return next(new CustomError("Question not found", 404));
 

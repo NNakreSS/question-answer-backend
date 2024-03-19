@@ -13,6 +13,7 @@ import {
   editAnswer,
   getAllAnswersByQuestion,
   getAnswerById,
+  deleteAnswer
 } from "../controllers/answer.js";
 
 const router = Router({ mergeParams: true });
@@ -29,6 +30,13 @@ router.put(
   "/:answer_id/edit",
   [checkAnswerExist, getAccessToRoute, getAnswerOwnerAccess],
   editAnswer
+);
+
+//? delete methods
+router.delete(
+  "/:answer_id/delete",
+  [checkAnswerExist, getAccessToRoute, getAnswerOwnerAccess],
+  deleteAnswer
 );
 
 export default router;
