@@ -15,9 +15,9 @@ yarn
 
 ## Ortam Değişkenleri
 
- -ilk olarak mongo db ayarlarınızı yaparak bir bağlantı noktarı URl'i edinin
+- ilk olarak mongo db ayarlarınızı yaparak bir bağlantı noktarı URl'i edinin
  
- -Bu proje için aşağıdaki ortam değişkenlerini belirtmeniz gerekmektedir. Bunları config/env/config.env dosyasına ekleyebilirsiniz.
+- Bu proje için aşağıdaki ortam değişkenlerini belirtmeniz gerekmektedir. Bunları config/env/config.env dosyasına ekleyebilirsiniz.
 ```env
 PORT=5000
 NODE_ENV=development
@@ -40,7 +40,7 @@ SMTP_USER=your_email@gmail.com
 SMTP_PASSWORD=your_app_password
 ```
 
- -projeyi development ortamında çalıştırın
+- projeyi development ortamında çalıştırın
 ```bash
 yarn dev
 ```
