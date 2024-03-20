@@ -1,0 +1,108 @@
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(28, 28, 28);
+}
+
+#container {
+  display: flex;
+  flex-flow: column;
+  margin: 1rem 0;
+  width: 80vw;
+  margin: auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+details {
+  border-bottom: 2px solid black;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+}
+
+summary {
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 14px;
+  margin-top: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+}
+
+li {
+  transition: all 0.2s;
+  border: 2px solid black;
+  padding: 14px;
+  border-radius: 18px;
+  box-shadow: 0 0 5px black;
+  font-size: 1.1rem;
+}
+
+li:hover {
+  transform: scale(1.01);
+}
+
+footer {
+  width: 100%;
+  height: 24px;
+  color: white;
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(49, 200, 255);
+  font-size: medium;
+  font-size: 1.5rem;
+}
+
+.method {
+  box-sizing: border-box;
+}
+
+.method:hover {
+  border-bottom: 3px solid rgb(0, 106, 255) !important;
+}
+
+.GET {
+  background-color: #c0e4ffdb;
+}
+
+.POST {
+  background-color: #cff4d2d4;
+}
+
+.PUT {
+  background-color: #ffefc0d4;
+}
+
+.DELETE {
+  background-color: #ffc0cbd7;
+}
