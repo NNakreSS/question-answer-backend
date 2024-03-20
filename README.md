@@ -1,4 +1,4 @@
-# Backend QA API
+# Question Answer API
 
 Bu proje bir Soru-Cevap API'sidir. Kullanıcılar, sorular sormak, cevaplamak ve diğer kullanıcıların sorularına cevap vermek , soruları ve cevapları beğenmek için bu API'yi kullanabilirler.
 Api içerisinde signup sigin ve admin methodları mevcut.
@@ -8,7 +8,7 @@ Api içerisinde signup sigin ve admin methodları mevcut.
 Projeyi yerel makinanıza klonlayın ve bağımlılıkları yüklemek için aşağıdaki adımları izleyin:
 
 ```bash
-git clone https://github.com/nakres/backend-qa.git
+git clone https://github.com/NNakreSS/question-answer-backend.git
 cd backend-qa
 yarn
 ```
