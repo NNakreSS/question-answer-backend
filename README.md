@@ -7,8 +7,6 @@ Api içerisinde signup sigin ve admin methodları mevcut.
 
 Projeyi yerel makinanıza klonlayın ve bağımlılıkları yüklemek için aşağıdaki adımları izleyin:
 
-### Mongo DB
-
 ```bash
 git clone https://github.com/nakres/backend-qa.git
 cd backend-qa
