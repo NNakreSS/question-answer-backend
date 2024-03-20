@@ -46,6 +46,8 @@ const paginationHelper = async (total, query, req) => {
   return {
     query: query?.skip(startIndex).limit(limit),
     pagination,
+    startIndex,
+    limit,
   };
 };
 

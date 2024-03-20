@@ -10,10 +10,7 @@ const getUserById = asyncErrorWrapper(async (req, res, next) => {
 });
 
 const getAllUsers = asyncErrorWrapper(async (req, res, next) =>
-  res.status(200).json({
-    success: true,
-    data: res.queryResults,
-  })
+  res.status(200).json(res.queryResults)
 );
 
 export { getUserById, getAllUsers };

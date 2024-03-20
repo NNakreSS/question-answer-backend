@@ -20,14 +20,9 @@ const addNewQuestion = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-const getQuestionById = asyncErrorWrapper(async (req, res, next) => {
-  const question = req.data;
-
-  return res.status(200).json({
-    success: true,
-    data: question,
-  });
-});
+const getQuestionById = asyncErrorWrapper(async (req, res, next) =>
+  res.status(200).json(res.queryResults)
+);
 
 const editQuestion = asyncErrorWrapper(async (req, res, next) => {
   let question = req.data;

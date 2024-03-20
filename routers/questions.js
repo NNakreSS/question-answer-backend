@@ -22,6 +22,7 @@ import {
 import answer from "./answer.js";
 import Question from "../models/Question.js";
 import questionQueryMiddleware from "../middlewares/query/questionQuery.js";
+import answerQueryMiddleware from "../middlewares/query/answerQuery.js";
 
 const router = express.Router();
 
@@ -37,7 +38,26 @@ router.get(
   getAllQuestions
 );
 
-router.get("/:id", checkQuestionExist, getQuestionById);
+router.get(
+  "/:id",
+  [
+    checkQuestionExist,
+    answerQueryMiddleware(Question, {
+      population: [
+        {
+          path: "author",
+          select: "name profile_image",
+        },
+        {
+          path: "answers",
+          select: "content author",
+        },
+      ],
+    }),
+  ],
+  getQuestionById
+);
+
 router.get("/:id/like", [getAccessToRoute, checkQuestionExist], likeQuestion);
 router.get(
   "/:id/unlike",
