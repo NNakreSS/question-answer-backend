@@ -21,7 +21,7 @@ import {
 //? answer router
 import answer from "./answer.js";
 import Question from "../models/Question.js";
-import questionQueryMiddleware from "../middlewares/query/question.js";
+import questionQueryMiddleware from "../middlewares/query/questionQuery.js";
 
 const router = express.Router();
 

@@ -1,5 +1,4 @@
 import asyncErrorWrapper from "express-async-handler";
-import User from "../models/User.js";
 
 const getUserById = asyncErrorWrapper(async (req, res, next) => {
   const user = req.data;
@@ -10,13 +9,11 @@ const getUserById = asyncErrorWrapper(async (req, res, next) => {
   });
 });
 
-const getAllUsers = asyncErrorWrapper(async (req, res, next) => {
-  const users = await User.find();
-
-  return res.status(200).json({
+const getAllUsers = asyncErrorWrapper(async (req, res, next) =>
+  res.status(200).json({
     success: true,
-    data: users,
-  });
-});
+    data: res.queryResults,
+  })
+);
 
 export { getUserById, getAllUsers };
