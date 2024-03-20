@@ -15,7 +15,7 @@ yarn
 
 ## Ortam Değişkenleri
 
-- ilk olarak mongo db ayarlarınızı yaparak bir bağlantı noktarı URl'i edinin
+- ilk olarak mongo db ayarlarınızı yaparak bir bağlantı noktası URl'i edinin
  
 - Bu proje için aşağıdaki ortam değişkenlerini belirtmeniz gerekmektedir. Bunları config/env/config.env dosyasına ekleyebilirsiniz.
 ```env
