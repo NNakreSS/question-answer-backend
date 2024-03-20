@@ -35,7 +35,7 @@ router.get(
 );
 
 //? post methods
-router.post("/", getAccessToRoute, addNewAnswerToQuestion);
+router.post("/add", getAccessToRoute, addNewAnswerToQuestion);
 
 //? put methods
 router.put(
